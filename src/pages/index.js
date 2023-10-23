@@ -1,4 +1,6 @@
 import * as React from "react"
+import { graphql } from 'gatsby'
+import { Box, Grid, Image, InfiniteScroll } from "grommet";
 
 const pageStyles = {
   color: "#232129",
@@ -123,9 +125,23 @@ const links = [
   },
 ]
 
-const IndexPage = () => {
+const IndexPage = ({data}) => {
+  const { allFile } = data
+  const fileNames = allFile.edges.map(({ node }) => node.relativePath)
+  console.log(fileNames)
   return (
     <main style={pageStyles}>
+            <Grid columns="small" gap="large">
+        <InfiniteScroll items={fileNames}
+          step={20}
+        >
+                    {(el) => (
+          <Box border={{ color: "brand", size: "small" }} key={el}>
+            <Image src={`/${el}`} fit="contain" style={{ imageRendering: "pixelated" }} />
+          </Box>
+          )}
+        </InfiniteScroll>
+        </Grid>
       <h1 style={headingStyles}>
         Congratulations
         <br />
@@ -170,6 +186,19 @@ const IndexPage = () => {
     </main>
   )
 }
+
+export const query = graphql`
+  query {
+    allFile(filter: { sourceInstanceName: { eq: "static" } }) {
+      edges {
+        node {
+          id
+          relativePath
+        }
+      }
+    }
+  }
+`
 
 export default IndexPage
 
