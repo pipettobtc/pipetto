@@ -1,6 +1,6 @@
 import * as React from "react"
 import { graphql } from 'gatsby'
-import { Box, Grid, Image, InfiniteScroll } from "grommet";
+import { Box, Grid, Image, InfiniteScroll, Button } from "grommet";
 
 const pageStyles = {
   color: "#232129",
@@ -131,6 +131,14 @@ const IndexPage = ({data}) => {
   console.log(fileNames)
   return (
     <main style={pageStyles}>
+      <Box
+        fill
+        align="center"
+        justify="center"
+        className="pb-8"
+      >
+        <Button primary label="Mint" href="https://pipe.inscrib3.land/open-art"/>
+      </Box>
       <Grid columns="small" gap="large">
         <InfiniteScroll items={fileNames}
           step={20}
