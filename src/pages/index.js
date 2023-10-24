@@ -32,7 +32,7 @@ const IndexPage = ({data}) => {
               <Box background="brand" align="center">
                 <Heading level={4}>ID: {i}</Heading>
               </Box>
-              <Image src={`/${el}`} fit="contain" style={{ imageRendering: "pixelated" }} />
+              <Image src={`/pipetto/${el}`} fit="contain" style={{ imageRendering: "pixelated" }} />
             </Link>
           </Box>
           )}
